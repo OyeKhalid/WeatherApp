@@ -6,14 +6,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.weatherapp.data.model.CurrentWeather
 import com.example.weatherapp.repo.WeatherRepo
-//import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import retrofit2.Response
-//import javax.inject.Inject
+import javax.inject.Inject
 
 
-//@HiltViewModel
-class WeatherViewModel(private val repository: WeatherRepo) :
+@HiltViewModel
+class WeatherViewModel @Inject constructor(private val repository: WeatherRepo) :
     ViewModel() {
 
     private val _weather = MutableLiveData<Response<CurrentWeather>>()

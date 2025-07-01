@@ -60,39 +60,53 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <LinearLayout
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical"
             android:padding="16dp">
 
-            <ImageView
-                android:id="@+id/weatherIcon"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:src="@drawable/baseline_wb_sunny_24"
-                android:contentDescription="Weather Icon" />
+            <LinearLayout
+                android:id="@+id/weatherDataLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone"> <!-- Initially hidden -->
 
-            <TextView
-                android:id="@+id/tvTemperature"
+                <ImageView
+                    android:id="@+id/weatherIcon"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/baseline_wb_sunny_24"
+                    android:contentDescription="Weather Icon" />
+
+                <TextView
+                    android:id="@+id/tvTemperature"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="28°C"
+                    android:textSize="48sp"
+                    android:textColor="#212121"
+                    android:textStyle="bold"
+                    android:layout_marginTop="8dp" />
+
+                <TextView
+                    android:id="@+id/tvCity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Karachi"
+                    android:textSize="16sp"
+                    android:textColor="#757575"
+                    android:layout_marginTop="4dp" />
+            </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/progressBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="28°C"
-                android:textSize="48sp"
-                android:textColor="#212121"
-                android:textStyle="bold"
-                android:layout_marginTop="8dp"/>
+                android:layout_gravity="center" />
+        </FrameLayout>
 
-            <TextView
-                android:id="@+id/tvCity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Karachi"
-                android:textSize="16sp"
-                android:textColor="#757575"
-                android:layout_marginTop="4dp"/>
-        </LinearLayout>
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

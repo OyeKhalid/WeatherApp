@@ -9,15 +9,15 @@ import com.example.weatherapp.data.Constants
 import com.example.weatherapp.databinding.ActivityMainBinding
 import com.example.weatherapp.repo.WeatherRepo
 import com.example.weatherapp.viewModel.WeatherViewModel
-import com.example.weatherapp.viewmodel.WeatherViewModelFactory
-//import dagger.hilt.android.AndroidEntryPoint
+//import com.example.weatherapp.viewmodel.WeatherViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
 
-//@AndroidEntryPoint
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    //private val weatherViewModel : WeatherViewModel by viewModels()
-    private lateinit var weatherViewModel : WeatherViewModel
+    private val weatherViewModel : WeatherViewModel by viewModels()
+    //private lateinit var weatherViewModel : WeatherViewModel
 
 
 
@@ -26,9 +26,9 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val repository = WeatherRepo()
-        val viewModelFactory = WeatherViewModelFactory(repository)
-        weatherViewModel = ViewModelProvider(this, viewModelFactory)[WeatherViewModel::class.java]
+//        val repository = WeatherRepo()
+//        val viewModelFactory = WeatherViewModelFactory(repository)
+//        weatherViewModel = ViewModelProvider(this, viewModelFactory)[WeatherViewModel::class.java]
 
 
         observeWeather()
@@ -37,6 +37,9 @@ class MainActivity : AppCompatActivity() {
             val cityName = binding.etCity.text.toString()
 
             if (cityName.isNotEmpty()){
+                binding.progressBar.visibility = android.view.View.VISIBLE
+                binding.weatherDataLayout.visibility = android.view.View.GONE
+
                 weatherViewModel.fetchWeather(cityName,Constants.Api_Key,Constants.Units)
             }
             else{
@@ -49,11 +52,14 @@ class MainActivity : AppCompatActivity() {
 
     private fun observeWeather() {
         weatherViewModel.weather.observe(this) { response ->
+            binding.progressBar.visibility = android.view.View.GONE
             if (response != null && response.isSuccessful) {
                 val weather = response.body()
+                binding.weatherDataLayout.visibility = android.view.View.VISIBLE
                 binding.tvTemperature.text = "${weather?.main?.temp?.toInt()} °C"
                 binding.tvCity.text = weather?.name?: "N/A"
             } else {
+                binding.weatherDataLayout.visibility = android.view.View.GONE
                 Toast.makeText(this, "The City Name Is Not Correct", Toast.LENGTH_SHORT).show()
             }
         }
