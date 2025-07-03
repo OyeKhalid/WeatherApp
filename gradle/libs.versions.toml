@@ -17,6 +17,9 @@ cardview = "1.0.0"
 lifecycle = "2.6.2"
 hilt = "2.50"
 daggerHilt = "2.51.1"
+work = "2.9.0"
+hiltCommon = "1.2.0"
+hiltWork = "1.2.0"
 
 
 [libraries]
@@ -46,6 +49,12 @@ androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-co
 #Dagger Hilt
 dagger-hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "daggerHilt" }
 dagger-hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "daggerHilt" }
+
+#Notificaion Builder
+androidx-work-runtime = { group = "androidx.work", name = "work-runtime-ktx", version.ref = "work" }
+androidx-hilt-common = { group = "androidx.hilt", name = "hilt-common", version.ref = "hiltCommon" }
+androidx-hilt-work = { group = "androidx.hilt", name = "hilt-work", version.ref = "hiltWork" }
+androidx-hilt-compiler = { group = "androidx.hilt", name = "hilt-compiler", version.ref = "hiltWork" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
